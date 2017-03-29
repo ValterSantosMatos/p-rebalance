@@ -1,0 +1,9 @@
+// Place your settings in this file to overwrite default and user settings.
+{
+  // Excludes files from the workspace
+  "files.exclude": {
+    "node_modules": true,
+    "coverage": true,
+    ".nyc_output": true
+  }
+}
