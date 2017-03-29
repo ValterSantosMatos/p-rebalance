@@ -6,4 +6,5 @@ test('title', t => {
 	t.is(err.message, 'Expected a string, got number');
 
 	t.is(fn('unicorns'), 'unicorns & rainbows');
+
 });
