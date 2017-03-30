@@ -5,7 +5,7 @@ node_js:
 
 script:
   - npm run build  # build
-  - npm run lint  # lint
+  - npm run lint-ci  # lint
   - npm run coverage   # run mocha unit tests with coverage
 
 after_script:
