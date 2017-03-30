@@ -3,6 +3,10 @@ node_js:
   - '6'
   - '4'
 
+notifications:
+  email:
+    - valter.santos.matos@gmail.com
+
 script:
   - npm run build  # build
   - npm run lint-ci  # lint
