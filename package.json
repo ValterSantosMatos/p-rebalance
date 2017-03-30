@@ -1,37 +1,68 @@
 {
   "name": "p-rebalance",
   "version": "0.0.0",
-  "description": "My praiseworthy module",
+  "description": "p-rebalance",
   "license": "MIT",
   "repository": "valter.santos.matos@gmail.com/p-rebalance",
   "author": {
-    "name": "Valter Matos",
-    "email": "valter.santos.matos@8securities.com",
+    "name": "Valter Santos Matos",
+    "email": "valter.santos.matos@gmail.com",
     "url": "valtersantosmatos.github.io"
   },
-  "engines": {
-    "node": ">=4"
-  },
-  "scripts": {
-    "test": "xo && nyc ava"
-  },
-  "files": [
-    "index.js"
-  ],
   "keywords": [
     ""
   ],
-  "dependencies": {},
+  "files": [
+    "lib"
+  ],
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "engines": {
+    "node": ">=4.0.0"
+  },
+  "scripts": {
+    "clean": "rimraf lib",
+    "lint": "tslint --force --format verbose \"src/**/*.ts\"",
+    "build": "npm run clean && npm run lint && echo Using TypeScript && tsc --version && tsc --pretty",
+    "test": "npm run build && mocha --compilers ts:ts-node/register --recursive 'test/**/*-spec.ts'",
+    "coverage": "nyc mocha --compilers ts:ts-node/register",
+    "watch": "npm run build -- --watch",
+    "watch:test": "npm run test -- --watch"
+  },
+  "dependencies": {
+    "yahoo-finance": "^0.2.16"
+  },
   "devDependencies": {
-    "ava": "^0.18.2",
-    "coveralls": "^2.12.0",
-    "nyc": "^10.2.0",
-    "xo": "^0.18.1"
+    "@types/chai": "^3.0.0",
+    "@types/mocha": "^2.0.0",
+    "@types/node": "^6.0.0",
+    "chai": "^3.0.0",
+    "mocha": "^3.0.0",
+    "nyc": "^10.0.0",
+    "rimraf": "^2.0.0",
+    "ts-node": "^2.0.0",
+    "tslint": "^4.0.0",
+    "typescript": "^2.0.0",
+    "coveralls": "^2.12.0"
   },
   "nyc": {
+    "include": [
+      "src/*.ts"
+    ],
+    "exclude": [
+      "lib"
+    ],
+    "extension": [
+      ".ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ],
     "reporter": [
       "lcov",
-      "text"
-    ]
+      "text",
+      "html"
+    ],
+    "all": true
   }
 }
