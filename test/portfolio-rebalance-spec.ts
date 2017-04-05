@@ -1,27 +1,40 @@
-
 import * as chai from "chai";
 import * as chaiAsPromised from "chai-as-promised";
 chai.use(chaiAsPromised);
 const expect = chai.expect;
 
-import { PortfolioRebalance } from "../src/portfolio-rebalance";
+import { IInstrument, PortfolioRebalance } from "../src/portfolio-rebalance";
 
 describe("Portfolio rebalance module", () => {
-  it("should get the instruments from a list of symbols", () => {
+  (it as any)("getInstruments() should get the instruments with prices from a list of symbols", () => {
     const pr = new PortfolioRebalance();
-    const symbols = ["AAPL", "GOOGL"];
+    const symbols = ["AAPL"];
 
-    return pr.getInstruments(symbols).then((asd) => {
-      console.log(asd)
-      expect(asd[0]).to.equal("asd");
-    });
+    return pr.getInstruments(symbols)
+      .then((instruments: IInstrument[]) => {
+        // Confirm the apple stock
+        expect(instruments[0].symbol).to.equal("AAPL");
+        expect(instruments[0].name).to.equal("Apple Inc.");
+        expect(instruments[0].currency).to.equal("USD");
+        // tslint:disable-next-line:no-unused-expression
+        expect(instruments[0].price).to.not.be.undefined;
+      });
+    // Increase the timeout since we are making an API call
+  }).timeout(5000);
 
-    // expect(pr.getInstruments(symbols)).to.eventually.have.length(2);
-    // expect(pr.getInstruments(symbols)).to.eventually.have.deep.property("[0].symbol", "AAPL");
-    // expect(pr.getInstruments(symbols)).to.eventually.have.deep.property("[0].name", "Apple Inc.");
-    // expect(pr.getInstruments(symbols)).to.eventually.have.deep.property("[0].currency", "USD");
-    // expect(pr.getInstruments(symbols)).to.eventually.have.deep.property("[1].symbol", "GOOGL");
-    // expect(pr.getInstruments(symbols)).to.eventually.have.deep.property("[1].name", "Alphabet Inc.");
-    // expect(pr.getInstruments(symbols)).to.eventually.have.deep.property("[1].currency", "USD");
-  });
+  (it as any)("getInstruments() should get the instruments with prices from a list of symbols", () => {
+    const pr = new PortfolioRebalance();
+    const symbols = ["AAPL"];
+
+    // Increase the timeout since we are making an API call
+    return pr.getInstruments(symbols)
+      .then((instruments: IInstrument[]) => {
+        // Confirm the apple stock
+        expect(instruments[0].symbol).to.equal("AAPL");
+        expect(instruments[0].name).to.equal("Apple Inc.");
+        expect(instruments[0].currency).to.equal("USD");
+        // tslint:disable-next-line:no-unused-expression
+        expect(instruments[0].price).to.not.be.undefined;
+      });
+  }).timeout(5000);
 });
