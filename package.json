@@ -1,6 +1,6 @@
 {
   "name": "p-rebalance",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "p-rebalance",
   "license": "MIT",
   "repository": "valter.santos.matos@gmail.com/p-rebalance",
@@ -31,11 +31,11 @@
     "watch:test": "npm run test -- --watch"
   },
   "dependencies": {
+    "es6-set": "^0.1.5",
     "yahoo-finance": "^0.2.16"
   },
   "devDependencies": {
     "@types/chai": "^3.4.35",
-    "@types/chai-as-promised": "0.0.30",
     "@types/es6-promise": "0.0.32",
     "@types/mocha": "^2.0.0",
     "@types/node": "^7.0.0",
